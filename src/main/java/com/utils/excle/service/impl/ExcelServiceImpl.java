@@ -21,7 +21,7 @@ public class ExcelServiceImpl implements ExcelService {
         StringBuilder annotation = new StringBuilder();
         builder.append("CREATE TABLE \"" + tableName + "\"(\n");
         for (ExcelModel excelModel : excelModels) {
-            if (StringUtils.isEmpty(excelModel.getLength())){
+            if (StringUtils.isEmpty(excelModel.getLength())) {
                 excelModel.setLength("1");
             }
             builder.append("  \"" + excelModel.getName() + "\"");
@@ -42,11 +42,11 @@ public class ExcelServiceImpl implements ExcelService {
             }
 
             annotation.append("COMMENT ON COLUMN \"" + tableName + "\"." + "\"" + excelModel.getName() + "\" IS '" +
-                    (StringUtils.isEmpty(excelModel.getCnName()) ? " " : excelModel.getCnName()) +
-                    " " + (excelModel.getRemarks() != null ? excelModel.getRemarks() + "';" : "';"));
+                    (StringUtils.isEmpty(excelModel.getCnName()) ? " " : excelModel.getCnName())
+                    + (!StringUtils.isEmpty(excelModel.getRemarks()) ? " " + excelModel.getRemarks() + "';" : "';"));
             annotation.append("\n");
         }
-        annotation.append("COMMENT ON TABLE \""+ tableName + "\" IS '"+ tableName +"';");
+        annotation.append("COMMENT ON TABLE \"" + tableName + "\" IS '" + tableName + "';");
 
         annotation.append("\n");
         builder.append(")\n");
