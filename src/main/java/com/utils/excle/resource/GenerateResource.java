@@ -30,7 +30,7 @@ public class GenerateResource {
         }
         List<ExcelModel> excelModels = null;
         try (InputStream inputStream = file.getInputStream()) {
-            excelModels = ExcelUtils.redExcel(null, 2, 0, inputStream, ExcelModel.class);
+            excelModels = ExcelUtils.redExcel(null, 2, 1, inputStream, ExcelModel.class);
 
         } catch (IOException e) {
             log.error("文件解析失败, 原因:{}", e.getMessage());
